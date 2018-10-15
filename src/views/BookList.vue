@@ -27,10 +27,10 @@
             class="elevation-1"
       >
         <template slot="items" slot-scope="props">
-          <td>{{ props.item.BookId }}</td>
-          <td>{{ props.item.Name }}</td>
-          <td>{{ props.item.Author }}</td>
-          <td>{{ props.item.Year }}</td>
+          <td>{{ props.item.bookId }}</td>
+          <td>{{ props.item.title }}</td>
+          <td>{{ props.item.author }}</td>
+          <td>{{ props.item.year }}</td>
           <td>
             <v-icon @click="editBook(props.item)">edit</v-icon>
           </td>
@@ -84,10 +84,10 @@ export default {
     editDialog: false,
     deleteDialog: false,
     headers: [
-      { text: 'Book Id', value: 'BookId', sortable: false },
-      { text: 'Title', value: 'Name', sortable: false },
-      { text: 'Author', value: 'Author', sortable: false },
-      { text: 'Year', value: 'Year', sortable: false },
+      { text: 'Book Id', value: 'bookId', sortable: false },
+      { text: 'Title', value: 'title', sortable: false },
+      { text: 'Author', value: 'author', sortable: false },
+      { text: 'Year', value: 'year', sortable: false },
       { text: 'Edit', align: 'center', sortable: false },
       { text: 'Delete', align: 'center', sortable: false }
     ],

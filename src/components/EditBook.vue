@@ -57,15 +57,16 @@ export default {
     ],
     year: '',
     yearRules: [
-      v => !!v || 'Year is required'
+      v => !!v || 'Year is required',
+      v => v > 0 || 'Year must be greater than 0'
     ]
   }),
 
   watch: {
     chosenBook: function (val) {
-      this.title = this.chosenBook.Name
-      this.author = this.chosenBook.Author
-      this.year = this.chosenBook.Year
+      this.title = this.chosenBook.title
+      this.author = this.chosenBook.author
+      this.year = this.chosenBook.year
     }
   },
 
@@ -73,9 +74,9 @@ export default {
     submit () {
       if (this.$refs.form.validate()) {
         axios.put('http://localhost:5000/' + this.chosenBook._id, {
-          Name: this.title,
-          Author: this.author,
-          Year: this.year
+          title: this.title,
+          author: this.author,
+          year: parseInt(this.year)
         }).then(resp => {
           this.$emit('response', 'success')
           this.clear()

@@ -62,7 +62,8 @@ export default {
     valid: true,
     bookId: '',
     bookIdRules: [
-      v => !!v || 'Book Id is required'
+      v => !!v || 'Book Id is required',
+      v => v > 0 || 'Book Id must be greater than 0'
     ],
     title: '',
     titleRules: [
@@ -76,7 +77,8 @@ export default {
     ],
     year: '',
     yearRules: [
-      v => !!v || 'Year is required'
+      v => !!v || 'Year is required',
+      v => v > 0 || 'Year must be greater than 0'
     ],
     y: 'top',
     x: null,
@@ -88,10 +90,10 @@ export default {
     submit () {
       if (this.$refs.form.validate()) {
         axios.post('http://localhost:5000/', {
-          BookId: this.bookId,
-          Name: this.title,
-          Author: this.author,
-          Year: this.year
+          bookId: parseInt(this.bookId),
+          title: this.title,
+          author: this.author,
+          year: parseInt(this.year)
         }).then(resp => {
           this.$router.push('/addSuccess')
         }).catch(err => {
