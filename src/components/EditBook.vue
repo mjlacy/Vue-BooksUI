@@ -7,19 +7,19 @@
       <v-container grid-list-md>
         <v-form ref="form" v-model="valid" @keyup.native.enter="submit">
           <v-text-field
-                  v-model="title"
+                  v-model="chosenBook.title"
                   :rules="titleRules"
                   label="Title"
                   required
           ></v-text-field>
           <v-text-field
-                  v-model="author"
+                  v-model="chosenBook.author"
                   :rules="authorRules"
                   label="Author"
                   required
           ></v-text-field>
           <v-text-field
-                  v-model="year"
+                  v-model="chosenBook.year"
                   type="number"
                   :rules="yearRules"
                   label="Year"
@@ -45,38 +45,27 @@ export default {
   props: ['chosenBook'],
   data: () => ({
     valid: true,
-    title: '',
     titleRules: [
       v => !!v || 'Title is required',
       v => v.length >= 3 || 'Title must be at least 3 characters'
     ],
-    author: '',
     authorRules: [
       v => !!v || 'Author is required',
       v => v.length >= 3 || 'Author must be at least 3 characters'
     ],
-    year: '',
     yearRules: [
       v => !!v || 'Year is required',
       v => v > 0 || 'Year must be greater than 0'
     ]
   }),
 
-  watch: {
-    chosenBook: function (val) {
-      this.title = this.chosenBook.title
-      this.author = this.chosenBook.author
-      this.year = this.chosenBook.year
-    }
-  },
-
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
         axios.put('http://localhost:5000/' + this.chosenBook._id, {
-          title: this.title,
-          author: this.author,
-          year: parseInt(this.year)
+          title: this.chosenBook.title,
+          author: this.chosenBook.author,
+          year: parseInt(this.chosenBook.year)
         }).then(resp => {
           this.$emit('response', 'success')
           this.clear()
