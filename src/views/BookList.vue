@@ -32,10 +32,10 @@
           <td>{{ props.item.author }}</td>
           <td>{{ props.item.year }}</td>
           <td>
-            <v-icon @click="editBook(props.item)">edit</v-icon>
+            <v-icon class="pl-4" @click="editBook(props.item)">edit</v-icon>
           </td>
           <td>
-            <v-icon @click="deleteBook(props.item)">delete</v-icon>
+            <v-icon class="pl-4" @click="deleteBook(props.item)">delete</v-icon>
           </td>
         </template>
         <template slot="no-data">
@@ -112,7 +112,7 @@ export default {
 
   methods: {
     getBooks () {
-      axios.get('http://localhost:5000')
+      axios.get('/api')
         .then(resp => {
           this.books = resp.data.books
         })

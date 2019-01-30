@@ -27,7 +27,7 @@ export default {
   methods: {
     deleteBook () {
       if (this.$refs.form.validate()) {
-        axios.delete('http://localhost:5000/' + this.chosenBook._id)
+        axios.delete('/api/' + this.chosenBook._id)
           .then(resp => {
             this.$emit('response', 'success')
           }).catch(err => {
