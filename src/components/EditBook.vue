@@ -62,7 +62,8 @@ export default {
   methods: {
     submit () {
       if (this.$refs.form.validate()) {
-        axios.put('/api/' + this.chosenBook._id, {
+        axios.put(`/api/${this.chosenBook._id}`, {
+          bookId: this.chosenBook.bookId,
           title: this.chosenBook.title,
           author: this.chosenBook.author,
           year: parseInt(this.chosenBook.year)

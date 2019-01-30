@@ -1,9 +1,10 @@
 <template>
   <v-container fluid>
-    <v-btn to="/addBook" color="info">Add Book</v-btn>
     <v-flex xs12 sm8 md8 lg8 offset-xs0 offset-lg2>
       <v-toolbar flat color="white">
         <v-toolbar-title>Books</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn flat outline to="/addBook">Add Book</v-btn>
         <v-spacer></v-spacer>
         <v-text-field
             v-model="search"
